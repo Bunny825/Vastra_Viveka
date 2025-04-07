@@ -1,0 +1,8 @@
+path: "/content/drive/My Drive/formal_informal"
+train: images/train  # If images folder is inside the path
+val: images/val # If test folder is inside the path
+
+names:
+  0: Formal
+  1: Informal
+
