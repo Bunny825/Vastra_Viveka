@@ -5,3 +5,4 @@ ultralytics
 Pillow
 av
 streamlit-webrtc
+streamlit-option-menu
