@@ -1,8 +1,8 @@
-opencv-python-headless
 streamlit
-numpy
-ultralytics
-Pillow
-av
 streamlit-webrtc
 streamlit-option-menu
+ultralytics
+opencv-python-headless
+numpy
+av
+Pillow
