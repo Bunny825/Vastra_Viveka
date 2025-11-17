@@ -22,19 +22,19 @@ st.title("Smart Scope")
 
 # Load Models
 if option == "Mask Detector":
-    model = YOLO("/home/bunnys-weapon/Documents/mini_project_codes/mask_best.pt")
+    model = YOLO("./mask_best.pt")
     st.subheader("😷 Mask and No Mask Classifier")
     
 elif option == "Formal vs Informal":
-    model = YOLO("/home/bunnys-weapon/Documents/mini_project_codes/formal_best.pt")
+    model = YOLO("./formal_best.pt")
     st.subheader("🧥 Formal and Informal Classifier")
 
 elif option == "Traditional vs Non-Traditional":
-    model = YOLO("/home/bunnys-weapon/Documents/mini_project_codes/trad_best.pt")
+    model = YOLO("./trad_best.pt")
     st.subheader("👕 Traditional and Non-Traditional Classifier")
     
 elif option == "Helmet Detector":
-    model = YOLO("/home/bunnys-weapon/Documents/mini_project_codes/helmet_best.pt")
+    model = YOLO("./helmet_best.pt")
     st.subheader("🪖 Helmet and No Helmet Classifier")
 
 # Initialize stop state
