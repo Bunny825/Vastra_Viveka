@@ -10,9 +10,6 @@ from io import BytesIO
 import os
 import json
 import time
-import base64
-import struct
-import wave
 
 # ================================================================
 #                         PAGE CONFIG
@@ -566,30 +563,8 @@ def run_detection(image_bgr, display_conf):
     return image_rgb, all_detections
 
 
-def generate_beep_wav(freq=700, duration_ms=300, volume=0.5):
-    """Generate a short beep as WAV bytes for st.audio."""
-    sample_rate = 22050
-    n_samples = int(sample_rate * duration_ms / 1000)
-    buf = BytesIO()
-    with wave.open(buf, "wb") as wf:
-        wf.setnchannels(1)
-        wf.setsampwidth(2)
-        wf.setframerate(sample_rate)
-        for i in range(n_samples):
-            t = i / sample_rate
-            val = int(volume * 32767 * np.sin(2 * np.pi * freq * t))
-            wf.writeframes(struct.pack("<h", val))
-    return buf.getvalue()
-
-
-@st.cache_data
-def get_alert_sound():
-    """Cache the alert beep so it's only generated once."""
-    return generate_beep_wav(freq=700, duration_ms=300, volume=0.5)
-
-
 def check_violations(detections):
-    """Check for violations and show alert banner + play sound."""
+    """Check for violations and show alert banner."""
     violations = [d for d in detections if d.get("is_violation", False)]
     if violations and enable_alerts:
         v_names = set(f"{d['label']}" for d in violations)
@@ -601,8 +576,6 @@ def check_violations(detections):
             f'</div>',
             unsafe_allow_html=True,
         )
-        # Play alert sound
-        st.audio(get_alert_sound(), format="audio/wav", autoplay=True)
     return violations
 
 
